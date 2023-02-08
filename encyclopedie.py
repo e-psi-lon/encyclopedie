@@ -259,7 +259,33 @@ class Sciences:
       if Chapitre=="Retour":
         Sciences()
 
-
+class Litteraire:
+  def __init__(self):
+    drawTxt("Litteraire :",0,0)
+    Rangee = menu(0,30,[["btn","Francais"],["btn","Anglais"],["btn","Retour"]])[0]
+    drawRect(0,0,340,230,(255,255,255))
+    if Rangee=="Francais":
+      drawTxt("Litteraire/Francais :",0,0)
+      Chapitre=menu(0,30,[["btn","Quelque Chose"],["btn","Retour"]])[0]
+      drawRect(0,0,340,230,(255,255,255))
+      if Chapitre=="Quelque Chose":
+        drawTxt("Quelque Chose :",0,0)
+        Theme=menu(0,30,[["btn","Retour"]])[0]
+        drawRect(0,0,340,230,(255,255,255))
+        if Theme=="Retour":
+          Litteraire()
+    if Rangee=="Anglais":
+      drawTxt("Litteraire/Anglais :",0,0)
+      Chapitre=menu(0,30,[["btn","Quelque Chose"],["btn","Retour"]])[0]
+      drawRect(0,0,340,230,(255,255,255))
+      if Chapitre=="Quelque Chose":
+        drawTxt("Quelque Chose :",0,0)
+        Theme=menu(0,30,[["btn","Retour"]])[0]
+        drawRect(0,0,340,230,(255,255,255))
+        if Theme=="Retour":
+          Litteraire()
+    if Rangee=="Retour":
+      Main.colonne()
 class Autres:
   def __init__(self):
     drawTxt("Autres :",0,0)
@@ -307,12 +333,15 @@ class Main:
       drawTxt("Aller à :",0,0)
       Colonne = menu(0,30,[["btn","Sciences"],["btn","Littéraire"],["btn","Autres"],["btn","Quitter"]])[0]
       drawRect(0,0,340,230,(255,255,255))
-      if Colonne=="Quitter":
-        pass
       if Colonne=="Sciences":
         Sciences()
       if Colonne=="Autres":
         Autres()
+      if Colonne=="Littéraire":
+        Litteraire()
+      if Colonne=="Quitter":
+        pass
+
 
 
 
