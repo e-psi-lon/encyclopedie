@@ -2,22 +2,7 @@
 #Dernière màj par e_psi_lon le 01/02/23
 
 #changelog (à partir du 24/01/23)
-#
-# SAFE | Colveri : 24/01/23 : Ajout du changelog / Mise en place des crédits dans Autres/Credits / Traduction des commentaires
-# BUGGED | e_psi_lon : 01/02/23 : Rectification des retours à la ligne et rajout d'un menu pour la physique-chimie (merci Github Copilot !) + création d'une repository sur Github
-# BUGGED [ Colveri : 06/02/23 : Ajout du bug report + correction de la mise en page de DivisionCellulaire()
-
-#
-#
-#
-#
-#
-
-# BUGS REPORT (supprimer la ligne quand corrigé)
-# Problème dans l'execution de func discriminant() : passage direct à c sans rensseigner b
-# ...
-# ...
-
+# Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
 # IMPORTS MODULES
 
 import math
@@ -205,7 +190,8 @@ class Sciences:
       def discriminant():
         drawTxt("Résoudre l'équation ax^2+bx+c=0",0,0)
         drawTxt("a",0,30)
-        a=cinput()
+        a=0
+        while a==0: a=cinput()
         drawRect(0,70,340,20,(255,255,255))
         drawTxt("b",0,30)
         b=cinput()
@@ -265,6 +251,13 @@ class Litteraire:
     Rangee = menu(0,30,[["btn","Francais"],["btn","Anglais"],["btn","Retour"]])[0]
     drawRect(0,0,340,230,(255,255,255))
     if Rangee=="Francais":
+      Litteraire.Francais()
+    if Rangee=="Anglais":
+      Litteraire.Anglais()
+    if Rangee=="Retour":
+      Main.colonne()
+  class Francais:
+    def __init__(self):
       drawTxt("Litteraire/Francais :",0,0)
       Chapitre=menu(0,30,[["btn","Quelque Chose"],["btn","Retour"]])[0]
       drawRect(0,0,340,230,(255,255,255))
@@ -274,7 +267,8 @@ class Litteraire:
         drawRect(0,0,340,230,(255,255,255))
         if Theme=="Retour":
           Litteraire()
-    if Rangee=="Anglais":
+  class Anglais:
+    def __init__(self):
       drawTxt("Litteraire/Anglais :",0,0)
       Chapitre=menu(0,30,[["btn","Quelque Chose"],["btn","Retour"]])[0]
       drawRect(0,0,340,230,(255,255,255))
@@ -282,10 +276,10 @@ class Litteraire:
         drawTxt("Quelque Chose :",0,0)
         Theme=menu(0,30,[["btn","Retour"]])[0]
         drawRect(0,0,340,230,(255,255,255))
-        if Theme=="Retour":
-          Litteraire()
-    if Rangee=="Retour":
-      Main.colonne()
+        
+      if Chapitre=="Retour":
+        Litteraire()
+
 class Autres:
   def __init__(self):
     drawTxt("Autres :",0,0)
@@ -344,6 +338,8 @@ class Main:
 
 
 
-
-Main()
-print("Exiting Program / Bug detected")
+try:
+  Main()
+  print("Exiting Program")
+except:
+  print("Bug Detected") 
