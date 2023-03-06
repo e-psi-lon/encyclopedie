@@ -168,11 +168,13 @@ class Sciences:
   class Maths:
     def __init__(self):
       drawTxt("Mathématiques :",0,0)
-      Chapitre = menu(0,30,[["btn","Équations"],["btn","Retour"]])[0]
+      Chapitre = menu(0,30,[["btn","Équations"],["btn","Vecteurs"],["btn","Retour"]])[0]
       drawRect(0,0,340,230,(255,255,255))
       if Chapitre=="Équations":
           Sciences.Maths.Equation()
-      if Chapitre=="Retour":
+      elif Chapitre=="Vecteurs":
+          Sciences.Maths.Vecteurs()
+      elif Chapitre=="Retour":
         Sciences()
     class Equation:
       def __init__(self):
@@ -186,6 +188,9 @@ class Sciences:
           time.sleep(3)
         if Theme=="Retour":
           Sciences.Maths()
+    class Vecteurs:
+      def __init__():
+        pass
     class Function:
       def discriminant():
         drawTxt("Résoudre l'équation ax^2+bx+c=0",0,0)
@@ -203,7 +208,7 @@ class Sciences:
         if delta>0:
           x1=-(-b**2+math.sqrt(delta))/(2*a)
           x2=-(-b**2-math.sqrt(delta))/(2*a)
-          return "Cette équation à pour racines : \n"+str(x1)+"\n"+str(x2)
+          return "Cette équation à delta :\n "+delta+"\n et pour racines : \n"+str(x1)+"\n"+str(x2)
         if delta==0:
           x=-b/(2*a)
           return "Cette équation à pour racine : \n"+str(x)
