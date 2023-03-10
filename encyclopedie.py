@@ -208,12 +208,12 @@ class Sciences:
         if delta>0:
           x1=-(-b**2+math.sqrt(delta))/(2*a)
           x2=-(-b**2-math.sqrt(delta))/(2*a)
-          return "Cette équation à delta :\n "+delta+"\n et pour racines : \n"+str(x1)+"\n"+str(x2)
+          return "Cette équation a pour delta :\n "+delta+"\n et pour racines : \n"+str(x1)+"\n"+str(x2)
         if delta==0:
           x=-b/(2*a)
-          return "Cette équation à pour racine : \n"+str(x)
+          return "Cette équation a pour racine : \n"+str(x)
         if delta<0:
-          return "Cette équation n'à aucune \nracine réelle."
+          return "Cette équation n'a aucune \nracine réelle."
 
 
   # SVT
