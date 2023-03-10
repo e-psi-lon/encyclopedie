@@ -346,5 +346,5 @@ class Main:
 try:
   Main()
   print("Exiting Program")
-except:
-  print("Bug Detected") 
+except Exception as e:
+  print("Bug Detected", e) 
