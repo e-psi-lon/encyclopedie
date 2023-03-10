@@ -1,5 +1,5 @@
 #créé par Colveri le 17/11/22
-#Dernière màj par e_psi_lon le 01/02/23
+#Dernière màj par Colveri le 10/03/23
 
 #changelog (à partir du 24/01/23)
 # Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
