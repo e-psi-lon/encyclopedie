@@ -1,5 +1,5 @@
 #créé par Colveri le 17/11/22
-#Dernière màj par Colveri le 10/03/23
+#Dernière màj par Colveri le 12/03/23
 
 #changelog (à partir du 24/01/23)
 # Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
@@ -61,6 +61,7 @@ def menu(x,y,elements,col=(0,0,0),bg_col=(255,255,255)):
   return elements[select][1],{x[1]:x[-1] for x in elements if x[0]!="btn"}
 
 # Fonction detection touches
+
 def cinput():
   value_to_edit=""
   while True:
