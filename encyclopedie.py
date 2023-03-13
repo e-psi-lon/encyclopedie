@@ -1,5 +1,5 @@
 #créé par Colveri le 17/11/22
-#Dernière màj par Colveri le 12/03/23
+#Dernière màj par e_psi_lon le 13/03/23
 
 #changelog (à partir du 24/01/23)
 # Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
@@ -190,8 +190,60 @@ class Sciences:
         if Theme=="Retour":
           Sciences.Maths()
     class Vecteurs:
-      def __init__():
-        pass
+      def __init__(self):
+        drawTxt("Mathématiques/Vecteurs :",0,0)
+        Theme = menu(0,30,[["btn","Norme"], ["btn","Coordonnées"],["btn","Retour"]])[0]
+        drawRect(0,0,340,230,(255,255,255))
+        if Theme=="Norme":
+          Sciences.Maths.Vecteurs.Norme()
+        if Theme=="Coordonnées":
+          Sciences.Maths.Vecteurs.Coordonnees()
+        if Theme=="Retour":
+          Sciences.Maths()
+      class Norme:
+        def __init__(self):
+          drawTxt("Mathématiques/Vecteurs/Norme :",0,0)
+          Theme = menu(0,30,[["btn","Norme d'un vecteur"], ["btn","Retour"]])[0]
+          drawRect(0,0,340,230,(255,255,255))
+          if Theme=="Norme d'un vecteur":
+            Sciences.Maths.Vecteurs.Norme.NormeVecteur()
+          if Theme=="Retour":
+            Sciences.Maths.Vecteurs()
+        def NormeVecteur():
+          drawTxt("Norme d'un vecteur :",0,0)
+          drawTxt("x",0,30)
+          x=cinput()
+          drawRect(0,70,340,20,(255,255,255))
+          drawTxt("y",0,30)
+          y=cinput()
+          drawRect(0,70,340,20,(255,255,255))
+          drawTxt("La norme du vecteur est :\n"+str(math.sqrt(x**2+y**2)),0,0)
+          time.sleep(3)
+          drawRect(0,0,340,230,(255,255,255))
+      class Coordonnees:
+        def __init__(self):
+          drawTxt("Mathématiques/Vecteurs/Coordonnées :",0,0)
+          Theme = menu(0,30,[["btn","Coordonnées d'un vecteur"], ["btn","Retour"]])[0]
+          drawRect(0,0,340,230,(255,255,255))
+          if Theme=="Coordonnées d'un vecteur":
+            Sciences.Maths.Vecteurs.Coordonnees.CoordonneesVecteur()
+          if Theme=="Retour":
+            Sciences.Maths.Vecteurs()
+        def CoordonneesVecteur():
+          drawTxt("Coordonnées d'un vecteur :",0,0)
+          drawTxt("Coordonnées x du premier point :",0,30)
+          x=cinput()
+          drawTxt("Coordonnées y du premier point :",0,30)
+          y=cinput()
+          drawTxt("Coordonnées x du deuxième point :",0,30)
+          x2=cinput()
+          drawTxt("Coordonnées y du deuxième point :",0,30)
+          y2=cinput()
+          drawRect(0,70,340,20,(255,255,255))
+
+          drawTxt("Les coordonnées du vecteur sont : "+str(x2-x)+" "+str(y2-y),0,0)
+          time.sleep(3)
+
     class Function:
       def discriminant():
         drawTxt("Résoudre l'équation ax^2+bx+c=0",0,0)
@@ -343,9 +395,8 @@ class Main:
         pass
 
 
-
 try:
   Main()
   print("Exiting Program")
 except Exception as e:
-  print("Bug Detected", e) 
+  print("Bug Detected : " + e)
