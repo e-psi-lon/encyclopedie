@@ -1,5 +1,5 @@
 #créé par Colveri le 17/11/22
-#Dernière màj par e_psi_lon le 13/03/23
+#Dernière màj par Colveri le 14/03/23
 
 #changelog (à partir du 24/01/23)
 # Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
@@ -143,7 +143,6 @@ def cinput():
 # DEF COMMANDES
 
 
-# Maths
 class Sciences:
   def __init__(self):
     drawTxt("Sciences :",0,0)
@@ -157,15 +156,50 @@ class Sciences:
       Sciences.Physique
     if Rangee=="Retour":
       Main.colonne()
+      
+  #Physique
   class Physique():
     def __init__(self):
-      Chapitre=menu(0,30,[["btn","ICIIIIIIIIIIIII"],["btn","Retour"]])[0]
-      if Chapitre=="ICIIIIIIIIIIIII":
-        drawTxt("! EN COURS DE CONSTRUCTION !",0,0)
+      Chapitre=menu(0,30,[["btn","La Lumière"],["btn","Retour"]])[0]
+      drawRect(0,0,340,230,(255,255,255))
+      if Chapitre=="La Lumière":
+        Sciences.Physique.Lumiere()
         drawRect(0,0,340,230,(255,255,255))
         time.sleep(2)
       if Chapitre=="Retour":
         Sciences()
+        
+      class Lumiere:
+        def __init__(self):
+          drawTxt("Physique/La Lumière :",0,0)
+          Theme = menu(0,30,[["btn","Colorimétrie"],["btn","Retour"]])[0]
+          drawRect(0,0,340,230,(255,255,255))
+          if Theme=="Colorimétrie":
+            Sciences.Physique.Lumiere.Colorimetrie()
+          if Theme=="Retour":
+            Sciences.Physique()
+            
+      class Colorimetrie:
+        def __init__(self):
+          drawTxt("Physique/La Lumière/ Colorimétrie:",0,0)
+          Theme = menu(0,30,[["btn","Synthèse additive"], ["btn","Synthèse soustractive"], ["btn","Retour"]])[0]
+          drawRect(0,0,340,230,(255,255,255))
+          if Theme=="Synthèse additive":
+            Sciences.Physique.Lumiere.Colorimetrie.SyntAddPhy()
+          if Theme=="Synthèse additive":
+            Sciences.Physique.Lumiere.Colorimetrie.SyntSouPhy()
+          if Theme=="Retour":
+            Sciences.Maths.Vecteurs()
+        
+        def SyntAddPhy():
+          drawTxt("EN CONSTRUCTION",0,0)
+          time.sleep(3)
+          drawRect(0,0,340,230,(255,255,255))
+         def SyntSouPhy():
+          drawTxt("EN CONSTRUCTION",0,0)
+          time.sleep(3)
+        
+  # Maths
   class Maths:
     def __init__(self):
       drawTxt("Mathématiques :",0,0)
@@ -241,7 +275,7 @@ class Sciences:
           y2=cinput()
           drawRect(0,70,340,20,(255,255,255))
 
-          drawTxt("Les coordonnées du vecteur sont : "+str(x2-x)+" "+str(y2-y),0,0)
+          drawTxt("Les coordonnées du vecteur sont : \n"+str(x2-x)+" "+str(y2-y),0,0)
           time.sleep(3)
 
     class Function:
@@ -302,6 +336,9 @@ class Sciences:
       drawRect(0,0,340,230,(255,255,255))
       if Chapitre=="Retour":
         Sciences()
+     
+    
+  # Physique
 
 class Litteraire:
   def __init__(self):
@@ -314,6 +351,8 @@ class Litteraire:
       Litteraire.Anglais()
     if Rangee=="Retour":
       Main.colonne()
+      
+      
   class Francais:
     def __init__(self):
       drawTxt("Litteraire/Francais :",0,0)
@@ -325,6 +364,8 @@ class Litteraire:
         drawRect(0,0,340,230,(255,255,255))
         if Theme=="Retour":
           Litteraire()
+          
+          
   class Anglais:
     def __init__(self):
       drawTxt("Litteraire/Anglais :",0,0)
