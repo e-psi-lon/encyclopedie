@@ -153,7 +153,7 @@ class Sciences:
     if Rangee=="SVT":
       Sciences.SVT()
     if Rangee=="Physique":
-      Sciences.Physique
+      Sciences.Physique()
     if Rangee=="Retour":
       Main.colonne()
       
@@ -169,15 +169,15 @@ class Sciences:
       if Chapitre=="Retour":
         Sciences()
         
-      class Lumiere:
-        def __init__(self):
-          drawTxt("Physique/La Lumière :",0,0)
-          Theme = menu(0,30,[["btn","Colorimétrie"],["btn","Retour"]])[0]
-          drawRect(0,0,340,230,(255,255,255))
-          if Theme=="Colorimétrie":
-            Sciences.Physique.Lumiere.Colorimetrie()
-          if Theme=="Retour":
-            Sciences.Physique()
+    class Lumiere:
+      def __init__(self):
+        drawTxt("Physique/La Lumière :",0,0)
+        Theme = menu(0,30,[["btn","Colorimétrie"],["btn","Retour"]])[0]
+        drawRect(0,0,340,230,(255,255,255))
+        if Theme=="Colorimétrie":
+          Sciences.Physique.Lumiere.Colorimetrie()
+        if Theme=="Retour"
+          Sciences.Physique()
             
       class Colorimetrie:
         def __init__(self):
@@ -195,7 +195,7 @@ class Sciences:
           drawTxt("EN CONSTRUCTION",0,0)
           time.sleep(3)
           drawRect(0,0,340,230,(255,255,255))
-         def SyntSouPhy():
+        def SyntSouPhy():
           drawTxt("EN CONSTRUCTION",0,0)
           time.sleep(3)
         
