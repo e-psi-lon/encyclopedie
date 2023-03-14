@@ -176,7 +176,7 @@ class Sciences:
         drawRect(0,0,340,230,(255,255,255))
         if Theme=="Colorimétrie":
           Sciences.Physique.Lumiere.Colorimetrie()
-        if Theme=="Retour"
+        if Theme=="Retour":
           Sciences.Physique()
             
       class Colorimetrie:
