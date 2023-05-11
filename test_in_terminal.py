@@ -71,19 +71,17 @@ def main():
     level_content =  encyclopedie
     while True:
         print("Niveau : " + level)
-        for choices in buttonInMenu:
-            print(choices[1])
         choice = int(input("Choix : "))
-        if choice == len(buttonInMenu) - 1:
+        if choice == len(buttonInMenu) - 1 and level != "encyclopedie/":
             levelsplit = level.split("/")
-            levelsplit = levelsplit[1:-1]
-            print(levelsplit)
-            level = "encyclopedie" + "/".join(levelsplit) + "/"
+            levelsplit = levelsplit[1:-2]
+            level = "encyclopedie/" + "/".join(levelsplit) + "/"
             level_content = encyclopedie
-            for level in levelsplit:
-                level_content = level_content[level]
+            for levels in levelsplit:
+                level_content = level_content[levels]
             buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
-        # Si le choix contient un element function_to_call
+        if choice == len(buttonInMenu) - 1 and level == "encyclopedie/":
+            break
         elif "function_to_call" in level_content[buttonInMenu[choice][1]].keys():
             exec(level_content[buttonInMenu[choice][1]]["function_to_call"])
             level = "encyclopedie/"

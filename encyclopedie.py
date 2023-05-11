@@ -169,7 +169,10 @@ def cinput():
 encyclopedie = {
     "Sciences": {
         "info": "Sciences :",
+        "type": "btn",
         "Mathématiques": {
+            "info": "Mathématiques :",
+            "type": "btn",
             "Équations": {
                 "Discriminant": "Permet de calculer le discriminant d'une équation du second degré"
             },
@@ -246,16 +249,28 @@ def main():
         choice = menu(0, 30, buttonInMenu)[0]
         drawRect(0, 0, 340, 230, (255, 255, 255))
         drawTxt(level_content[choice]["info"], 0, 0)
-        if choice == "Retour":
-            # On remonte d'un niveau
-            niveausplit = niveau.split("/")   
-            # On enleve le dernier niveau
-            niveausplit = niveausplit[:-2]
-            print(niveausplit)             
         buttonInMenu = [["btn", app] for app in choice]
         niveau = niveau + choice + "/"
         drawRect(0, 0, 340, 230, (255, 255, 255))
-        
+        if choice == "Retour":
+            levelsplit = level.split("/")
+            levelsplit = levelsplit[1:-2]
+            level = "encyclopedie/" + "/".join(levelsplit) + "/"
+            level_content = encyclopedie
+            for levels in levelsplit:
+                level_content = level_content[levels]
+            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
+        elif choice == "Quitter":
+            break
+        elif "function_to_call" in level_content[buttonInMenu[choice][1]].keys():
+            exec(level_content[buttonInMenu[choice][1]]["function_to_call"])
+            level = "encyclopedie/"
+            level_content =  encyclopedie
+            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
+        else:
+            level = level +  buttonInMenu[choice][1] + "/"
+            level_content = level_content[buttonInMenu[choice][1]]
+            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
 
 
 class Sciences:
