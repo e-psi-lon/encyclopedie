@@ -13,15 +13,14 @@ from kandinsky import fill_rect as drawRect, draw_string as drawTxt
 
 # Pour faire une meilleure interface
 
+def kd(key):
+    if keydown(key):
+        while keydown(key):
+            pass
+        return True
+    return False
 
 def menu(x, y, elements, col=(0, 0, 0), bg_col=(255, 255, 255)):
-    def kd(key):
-        if keydown(key):
-            while keydown(key):
-                pass
-            return True
-        return False
-
     kd(4)
     el_size, select, txt_size, draw = 25, 0, [0 for _ in range(len(elements))], 1
     while True:
@@ -166,6 +165,97 @@ def cinput():
 
 
 # DEF COMMANDES
+
+encyclopedie = {
+    "Sciences": {
+        "info": "Sciences :",
+        "Mathématiques": {
+            "Équations": {
+                "Discriminant": "Permet de calculer le discriminant d'une équation du second degré"
+            },
+            "Vecteurs": {
+                "Norme": {
+                    "Norme d'un vecteur": "Permet de calculer la norme d'un vecteur"
+                },
+                "Coordonnées": {
+                    "Coordonnées d'un vecteur": "Permet de calculer les coordonnées d'un vecteur"
+                }
+            }
+        },
+        "SVT": {
+            "La Cellule": {
+                "Théorie Cellulaire": "Permet de connaitre la théorie cellulaire"
+            }
+        },
+        "Physique": {
+            "La Lumière": {
+                "Colorimétrie": {
+                    "Synthèse additive": "Permet de connaitre la synthèse additive",
+                    "Synthèse soustractive": "Permet de connaitre la synthèse soustractive"
+                }
+            }
+        },
+        "Chimie": {}
+    },
+    "Littéraire": {
+        "Francais": {
+            "Quelque Chose": {}
+        },
+        "Anglais": {
+            "Quelque Chose": {}
+        }
+    },
+    "Autres": {
+        "Anniversaires": {
+            "Lycée": {
+                "info": "Coco : 08/08/2005 \nFlo : 05/04/2006 \nLilian : 20/10/2006"
+            }
+        },
+        "Machin": {},
+        "Bidule": {},
+        "Credits": {
+            "Developers": {}
+        }
+    },
+    "Quitter": {}
+}
+
+
+def __init__():
+    drawTxt("Bienvenue dans l'encyclopédie\nde Colveri.\nVous choisirez votre acces \nen utilisant\n les menus "
+            "dédiés.\nAppuyez sur 1 ou OK pour\ncommencer ou HOME/RETOUR pour\nquitter", 0, 0)
+    while True:
+        if keydown(KEY_ONE) or keydown(KEY_OK):
+            ouvrir = 1
+            drawRect(0, 0, 340, 230, (255, 255, 255))
+            break
+        elif keydown(KEY_BACK) or keydown(KEY_HOME):
+            ouvrir = 0
+            break
+    if ouvrir == 1:
+        main()
+
+def main():
+    drawRect(0, 0, 340, 230, (255, 255, 255))
+    drawTxt("Aller à :", 0, 0)
+    buttonInMenu = [["btn", app] for app in encyclopedie]
+    level = "encyclopedie/"
+    level_content = encyclopedie
+    while True:
+        drawRect(0, 0, 340, 230, (255, 255, 255))
+        choice = menu(0, 30, buttonInMenu)[0]
+        drawRect(0, 0, 340, 230, (255, 255, 255))
+        drawTxt(level_content[choice]["info"], 0, 0)
+        if choice == "Retour":
+            # On remonte d'un niveau
+            niveausplit = niveau.split("/")   
+            # On enleve le dernier niveau
+            niveausplit = niveausplit[:-2]
+            print(niveausplit)             
+        buttonInMenu = [["btn", app] for app in choice]
+        niveau = niveau + choice + "/"
+        drawRect(0, 0, 340, 230, (255, 255, 255))
+        
 
 
 class Sciences:
