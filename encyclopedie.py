@@ -75,87 +75,59 @@ def menu(x, y, elements, col=(0, 0, 0), bg_col=(255, 255, 255)):
 def cinput():
     value_to_edit = ""
     while True:
-        if keydown(KEY_ONE):
+        if kd(KEY_ONE):
             value_to_edit = value_to_edit + "1"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_ONE):
-                pass
-        if keydown(KEY_TWO):
+        if kd(KEY_TWO):
             value_to_edit = value_to_edit + "2"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_TWO):
-                pass
-        if keydown(KEY_THREE):
+        if kd(KEY_THREE):
             value_to_edit = value_to_edit + "3"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_THREE):
-                pass
-        if keydown(KEY_FOUR):
+        if kd(KEY_FOUR):
             value_to_edit = value_to_edit + "4"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_FOUR):
-                pass
-        if keydown(KEY_FIVE):
+        if kd(KEY_FIVE):
             value_to_edit = value_to_edit + "5"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_FIVE):
-                pass
-        if keydown(KEY_SIX):
+        if kd(KEY_SIX):
             value_to_edit = value_to_edit + "6"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_SIX):
-                pass
-        if keydown(KEY_SEVEN):
+        if kd(KEY_SEVEN):
             value_to_edit = value_to_edit + "7"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_SEVEN):
-                pass
-        if keydown(KEY_EIGHT):
+        if kd(KEY_EIGHT):
             value_to_edit = value_to_edit + "8"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_EIGHT):
-                pass
-        if keydown(KEY_NINE):
+        if kd(KEY_NINE):
             value_to_edit = value_to_edit + "9"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_NINE):
-                pass
-        if keydown(KEY_ZERO) and len(value_to_edit) != 0 and value_to_edit[0] != "-":
+        if kd(KEY_ZERO) and len(value_to_edit) != 0 and value_to_edit[0] != "-":
             value_to_edit = value_to_edit + "0"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_ZERO):
-                pass
-        if len(value_to_edit) == 0 and keydown(KEY_MINUS):
+        if len(value_to_edit) == 0 and kd(KEY_MINUS):
             value_to_edit = value_to_edit + "-"
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_MINUS):
-                pass
-        if keydown(KEY_DOT) and ("." not in value_to_edit):
+        if kd(KEY_DOT) and ("." not in value_to_edit):
             value_to_edit = value_to_edit + "."
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_DOT):
-                pass
-        if keydown(KEY_BACKSPACE) and len(value_to_edit) != 0:
+        if kd(KEY_BACKSPACE) and len(value_to_edit) != 0:
             value_to_edit = value_to_edit[:len(value_to_edit) - 1]
             drawRect(0, 70, 340, 20, (255, 255, 255))
             drawTxt(value_to_edit, 0, 70)
-            while keydown(KEY_BACKSPACE):
-                pass
-        if keydown(KEY_OK) or keydown(KEY_EXE):
-            while keydown(KEY_OK) or keydown(KEY_EXE):
-                pass
+        if kd(KEY_OK) or kd(KEY_EXE):
             if "." in value_to_edit:
                 return float(value_to_edit)
             elif len(value_to_edit) == 0:
@@ -228,11 +200,11 @@ def __init__():
     drawTxt("Bienvenue dans l'encyclopédie\nde Colveri.\nVous choisirez votre acces \nen utilisant\n les menus "
             "dédiés.\nAppuyez sur 1 ou OK pour\ncommencer ou HOME/RETOUR pour\nquitter", 0, 0)
     while True:
-        if keydown(KEY_ONE) or keydown(KEY_OK):
+        if kd(KEY_ONE) or kd(KEY_OK):
             ouvrir = 1
             drawRect(0, 0, 340, 230, (255, 255, 255))
             break
-        elif keydown(KEY_BACK) or keydown(KEY_HOME):
+        elif kd(KEY_BACK) or kd(KEY_HOME):
             ouvrir = 0
             break
     if ouvrir == 1:

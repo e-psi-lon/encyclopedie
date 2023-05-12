@@ -21,22 +21,28 @@ encyclopedie = {
                 },
                 "Coordonnées": {
                     "Coordonnées d'un vecteur": "Permet de calculer les coordonnées d'un vecteur"
-                }
+                },
+                "Retour": {}
             },
             "Retour": {}
         },
         "SVT": {
             "La Cellule": {
-                "Théorie Cellulaire": "Permet de connaitre la théorie cellulaire"
-            }
+                "Théorie Cellulaire": "Permet de connaitre la théorie cellulaire",
+                "Retour": {}
+            },
+            "Retour": {}
         },
         "Physique": {
             "La Lumière": {
                 "Colorimétrie": {
                     "Synthèse additive": "Permet de connaitre la synthèse additive",
-                    "Synthèse soustractive": "Permet de connaitre la synthèse soustractive"
-                }
-            }
+                    "Synthèse soustractive": "Permet de connaitre la synthèse soustractive",
+                    "Retour": {}
+                },
+                "Retour": {}
+            },
+            "Retour": {}
         },
         "Chimie": {},
         "Retour": {}
@@ -47,8 +53,10 @@ encyclopedie = {
             "Retour": {}
         },
         "Anglais": {
-            "Quelque Chose": {}
-        }
+            "Quelque Chose": {},
+            "Retour": {}
+        },
+        "Retour": {}
     },
     "Autres": {
         "Anniversaires": {
@@ -59,8 +67,11 @@ encyclopedie = {
         "Machin": {},
         "Bidule": {},
         "Credits": {
-            "Developers": {}
-        }
+            "Developers": {
+                "info": "Colveri : developpeur principal \ne_psi_lon : developpeur secondaire"
+            },
+        },
+        "Retour": {}
     },
     "Quitter": {}
 }
