@@ -1,8 +1,9 @@
 # créé par Colveri le 17/11/22
 # Dernière màj par Colveri le 14/03/23
 
-# changelog (à partir du 24/01/23)
+# changelog (à partir du 13/05/23)
 # Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
+# Version orignale (dépréciée, nouvelle version dans encyclopedie_rework.py)
 # IMPORTS MODULES
 
 import math
@@ -12,13 +13,13 @@ from kandinsky import fill_rect as drawRect, draw_string as drawTxt
 
 
 # Pour faire une meilleure interface
-
 def kd(key):
     if keydown(key):
         while keydown(key):
             pass
         return True
     return False
+
 
 def menu(x, y, elements, col=(0, 0, 0), bg_col=(255, 255, 255)):
     kd(4)
@@ -137,112 +138,6 @@ def cinput():
 
 
 # DEF COMMANDES
-
-encyclopedie = {
-    "Sciences": {
-        "info": "Sciences :",
-        "type": "btn",
-        "Mathématiques": {
-            "info": "Mathématiques :",
-            "type": "btn",
-            "Équations": {
-                "Discriminant": "Permet de calculer le discriminant d'une équation du second degré"
-            },
-            "Vecteurs": {
-                "Norme": {
-                    "Norme d'un vecteur": "Permet de calculer la norme d'un vecteur"
-                },
-                "Coordonnées": {
-                    "Coordonnées d'un vecteur": "Permet de calculer les coordonnées d'un vecteur"
-                }
-            }
-        },
-        "SVT": {
-            "La Cellule": {
-                "Théorie Cellulaire": "Permet de connaitre la théorie cellulaire"
-            }
-        },
-        "Physique": {
-            "La Lumière": {
-                "Colorimétrie": {
-                    "Synthèse additive": "Permet de connaitre la synthèse additive",
-                    "Synthèse soustractive": "Permet de connaitre la synthèse soustractive"
-                }
-            }
-        },
-        "Chimie": {}
-    },
-    "Littéraire": {
-        "Francais": {
-            "Quelque Chose": {}
-        },
-        "Anglais": {
-            "Quelque Chose": {}
-        }
-    },
-    "Autres": {
-        "Anniversaires": {
-            "Lycée": {
-                "info": "Coco : 08/08/2005 \nFlo : 05/04/2006 \nLilian : 20/10/2006"
-            }
-        },
-        "Machin": {},
-        "Bidule": {},
-        "Credits": {
-            "Developers": {}
-        }
-    },
-    "Quitter": {}
-}
-
-
-def __init__():
-    drawTxt("Bienvenue dans l'encyclopédie\nde Colveri.\nVous choisirez votre acces \nen utilisant\n les menus "
-            "dédiés.\nAppuyez sur 1 ou OK pour\ncommencer ou HOME/RETOUR pour\nquitter", 0, 0)
-    while True:
-        if kd(KEY_ONE) or kd(KEY_OK):
-            ouvrir = 1
-            drawRect(0, 0, 340, 230, (255, 255, 255))
-            break
-        elif kd(KEY_BACK) or kd(KEY_HOME):
-            ouvrir = 0
-            break
-    if ouvrir == 1:
-        main()
-
-def main():
-    drawRect(0, 0, 340, 230, (255, 255, 255))
-    drawTxt("Aller à :", 0, 0)
-    buttonInMenu = [["btn", app] for app in encyclopedie]
-    level = "encyclopedie/"
-    level_content = encyclopedie
-    while True:
-        drawRect(0, 0, 340, 230, (255, 255, 255))
-        choice = menu(0, 30, buttonInMenu)[0]
-        drawRect(0, 0, 340, 230, (255, 255, 255))
-        drawTxt(level_content[choice]["info"], 0, 0)
-        buttonInMenu = [["btn", app] for app in choice]
-        niveau = niveau + choice + "/"
-        drawRect(0, 0, 340, 230, (255, 255, 255))
-        if choice == "Retour":
-            levelsplit = level.split("/")
-            levelsplit = levelsplit[1:-2]
-            level = "encyclopedie/" + "/".join(levelsplit) + "/"
-            level_content = encyclopedie
-            for levels in levelsplit:
-                level_content = level_content[levels]
-            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
-        elif choice == "Quitter":
-            break
-        elif "function_to_call" in level_content[buttonInMenu[choice][1]].keys():
-            exec(level_content[buttonInMenu[choice][1]]["function_to_call"])
-            level = "encyclopedie/"
-            level_content =  encyclopedie
-            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
-        else:
-            level = level +  buttonInMenu[choice][1] + "/"
-            level_content = level_content[buttonInMenu[choice][1]]
-            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
 
 
 class Sciences:
@@ -539,11 +434,11 @@ class Main:
             "dédiés.\nAppuyez sur 1 ou OK pour\ncommencer ou HOME/RETOUR pour\nquitter",
             0, 0)
         while True:
-            if keydown(KEY_ONE) or keydown(KEY_OK):
+            if kd(KEY_ONE) or kd(KEY_OK):
                 ouvrir = 1
                 drawRect(0, 0, 340, 230, (255, 255, 255))
                 break
-            elif keydown(KEY_BACK) or keydown(KEY_HOME):
+            elif kd(KEY_BACK) or kd(KEY_HOME):
                 ouvrir = 0
                 break
         if ouvrir == 1:
