@@ -4,16 +4,16 @@
 # changelog (à partir du 13/05/23) Maintenant accessible depuis GitHub (https://github.com/e-psi-lon/encyclopedie)
 # Version retravaillée pour être plus facilement modifiable, maintenant seule version maintenue (encylopedie.py est
 # obsolète et ne sera plus maintenue mais reste disponible sur GitHub dans les anciens commits (et encore maintenant
-# ici car je laisse au cas où)) IMPORTS MODULES
+# ici car je laisse au cas où)) 
 
+# Importer les libs
 import math
 import time
 from ion import *
 from kandinsky import fill_rect as drawRect, draw_string as drawTxt
 
 
-# Pour faire une meilleure interface
-
+# Detection de pression de touche custom pour éviter le spam
 def kd(key):
     if keydown(key):
         while keydown(key):
@@ -22,6 +22,7 @@ def kd(key):
     return False
 
 
+# Fonction pour faire les menus de l'interface utilisateur
 def menu(x, y, elements, col=(0, 0, 0), bg_col=(255, 255, 255)):
     kd(4)
     el_size, select, txt_size, draw = 25, 0, [0 for _ in range(len(elements))], 1
@@ -72,6 +73,7 @@ def menu(x, y, elements, col=(0, 0, 0), bg_col=(255, 255, 255)):
     return elements[select][1], {x[1]: x[-1] for x in elements if x[0] != "btn"}
 
 
+# Fonction input mais custom pour fonctionner via une interface kandinsky et non la console
 def cinput():
     value_to_edit = ""
     while True:
@@ -135,51 +137,122 @@ def cinput():
             else:
                 return int(value_to_edit)
 
+# Fonction pour les racines (j'ai pas encore trouvé d'autres moyens)
+# TODO: Trouver une méthode plus adéquate
+def racines():
+    drawTxt("Résoudre l'équation ax^2+bx+c=0", 0, 0)
+    drawTxt("a",0,30)
+    a = 0
+    while a == 0:
+        a = cinput()
+    drawRect(0, 70, 340, 20, (255, 255, 255))
+    drawTxt("b",0,30)
+    b = cinput()
+    drawRect(0, 70, 340, 20, (255, 255, 255))
+    drawTxt("c",0,30)
+    c = cinput()
+    delta = b**2 - 4*a*c
+    if delta > 0:
+        return "Cette équation a pour delta :\n " + delta + "\n et pour racines : \n" + str((-b + math.sqrt(delta)) / (2*a)) + "\n" + str((-b - math.sqrt(delta)) / (2*a))
+    elif delta == 0:
+        return "Cette équation a pour racine : \n" + str(-b / (2*a))
+    elif delta < 0:
+        return "Cette équation n'a aucune \nracine réelle."
+    
+# Idem que ci dessus
+def discriminant():
+    drawTxt("Trouver le discriminant de l'équation ax^2+bx+c=0", 0, 0)
+    drawTxt("a",0,30)
+    a = 0
+    while a == 0:
+        a = cinput()
+    drawRect(0, 70, 340, 20, (255, 255, 255))
+    drawTxt("b",0, 30)
+    b = cinput()
+    drawRect(0, 70, 340, 20, (255, 255, 255))
+    drawTxt("c",0,30)
+    c = cinput()
+    return "Cette équation a pour discriminant : " + (b**2 - 4*a*c)
 
+# Dictionnaire qui définit tout les éléments de l'encyclopédie
 encyclopedie = {
     "Sciences": {
         "info": "Sciences :",
-        "type": "btn",
         "Mathématiques": {
             "info": "Mathématiques :",
-            "type": "btn",
             "Équations": {
-                "Discriminant": "Permet de calculer le discriminant d'une équation du second degré"
+                "info": "Équations :",
+                "Racines": {
+                    "function_to_call": racines
+                },
+                "Discriminant": {
+                    "function_to_call": discriminant
+                },
+                "Retour": {}
+
             },
             "Vecteurs": {
+                "info": "Vecteurs :",
                 "Norme": {
-                    "Norme d'un vecteur": "Permet de calculer la norme d'un vecteur"
+                    "function_to_call": lambda: "Permet de calculer la norme d'un vecteur"
                 },
                 "Coordonnées": {
-                    "Coordonnées d'un vecteur": "Permet de calculer les coordonnées d'un vecteur"
-                }
-            }
+                    "function_to_call": lambda: "Permet de calculer les coordonnées d'un vecteur"
+                },
+                "Retour": {}
+            },
+            "Retour": {}
         },
         "SVT": {
+            "info": "SVT :",
             "La Cellule": {
-                "Théorie Cellulaire": "Permet de connaitre la théorie cellulaire"
-            }
+                "info": "La Cellule :",
+                "Théorie Cellulaire": {
+                    "function_to_call": lambda: "Permet de connaitre la théorie cellulaire"
+                },
+                "Retour": {}
+            },
+            "Retour": {}
         },
         "Physique": {
+            "info": "Physique :",
             "La Lumière": {
+                "info": "La Lumière :",
                 "Colorimétrie": {
-                    "Synthèse additive": "Permet de connaitre la synthèse additive",
-                    "Synthèse soustractive": "Permet de connaitre la synthèse soustractive"
-                }
-            }
+                    "info": "Colorimétrie :",
+                    "Synthèse additive": {
+                        "function_to_call": lambda: "Permet de connaitre la synthèse additive"
+                    },
+                    "Synthèse soustractive": {
+                        "function_to_call": lambda: "Permet de connaitre la synthèse soustractive"
+                    },
+                    "Retour": {}
+                },
+                "Retour": {}
+            },
+            "Retour": {}
         },
-        "Chimie": {}
+        "Chimie": {},
+        "Retour": {}
     },
     "Littéraire": {
+        "info": "Littéraire :",
         "Francais": {
-            "Quelque Chose": {}
+            "info": "Francais :",
+            "Quelque Chose": {},
+            "Retour": {}
         },
         "Anglais": {
-            "Quelque Chose": {}
-        }
+            "info": "Anglais :",
+            "Quelque Chose": {},
+            "Retour": {}
+        },
+        "Retour": {}
     },
     "Autres": {
+        "info": "Autres :",
         "Anniversaires": {
+            "info": "Anniversaires :",
             "Lycée": {
                 "info": "Coco : 08/08/2005 \nFlo : 05/04/2006 \nLilian : 20/10/2006"
             }
@@ -187,14 +260,19 @@ encyclopedie = {
         "Machin": {},
         "Bidule": {},
         "Credits": {
-            "Developers": {}
-        }
+            "info": "Credits :",
+            "Developers": {
+                "function_to_call": lambda: drawTxt("Colveri : developpeur principal \ne_psi_lon : developpeur secondaire")
+            },
+        },
+        "Retour": {}
     },
     "Quitter": {}
 }
 
 
 def __init__():
+    # Message d'ouverture + début script
     drawTxt("Bienvenue dans l'encyclopédie\nde Colveri.\nVous choisirez votre acces \nen utilisant\n les menus "
             "dédiés.\nAppuyez sur 1 ou OK pour\ncommencer ou HOME/RETOUR pour\nquitter", 0, 0)
     while True:
@@ -210,47 +288,51 @@ def __init__():
 
 
 def main():
-    drawRect(0, 0, 340, 230, (255, 255, 255))
-    drawTxt("Aller à :", 0, 0)
-    buttonInMenu = [["btn", app] for app in encyclopedie]
-    level = "encyclopedie/"
-    level_content = encyclopedie
-    while True:
-        drawRect(0, 0, 340, 230, (255, 255, 255))
-        if "info" in level_content:
-            drawTxt(level_content["info"], 0, 0)
+    buttonInMenu = [["btn", app] for app in encyclopedie] # Définition des différents boutons du prochain menu
+    level = "encyclopedie/" # Niveau de base dans l'encyclopédie (équivalent à dossier, sous-dossier), ici niveau 0
+    level_content = encyclopedie # Contenu du niveau (de base à l'entièreté de l'encyclopédie)
+    while True: # On boucle à l'infini
+        drawRect(0, 0, 340, 230, (255, 255, 255)) # On réinitialise l'interface
+        if "info" in level_content: # On vérifie si il y a un champ info dans le niveau actuel 
+            drawTxt(level_content["info"], 0, 0) # Si oui on l'affiche 
         else:
-            drawTxt("Aller à :", 0, 0)
-        choice = menu(0, 30, buttonInMenu)[0]
-        drawRect(0, 0, 340, 230, (255, 255, 255))
-        indice = [i for i in range(len(buttonInMenu)) if buttonInMenu[i][1] == choice][0]
-        drawRect(0, 0, 340, 230, (255, 255, 255))
-        if choice == "Retour":
-            levelsplit = level.split("/")
-            levelsplit = levelsplit[1:-2]
-            level = "encyclopedie/" + "/".join(levelsplit) + "/"
-            level_content = encyclopedie
-            for levels in levelsplit:
-                level_content = level_content[levels]
-            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
-        elif choice == "Quitter":
-            break
-        elif "function_to_call" in level_content[buttonInMenu[indice][1]]:
-            exec(level_content[buttonInMenu[indice][1]]["function_to_call"])
-            level = "encyclopedie/"
-            level_content = encyclopedie
-            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
-        else:
-            level = level + buttonInMenu[indice][1] + "/"
-            level_content = level_content[buttonInMenu[indice][1]]
-            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
+            drawTxt("Aller à :", 0, 0) # Sinon on affiche un message de base
+        choice = menu(0, 30, buttonInMenu)[0] # Ici on prend le choix de l'utilisateur
+        drawRect(0, 0, 340, 230, (255, 255, 255)) # Réinitialisation de l'interface (encore)
+        indice = [i for i in range(len(buttonInMenu)) if buttonInMenu[i][1] == choice][0] # En vrai ici un .index() devrait suffir mais ne tentons pas le diable
+        if choice == "Retour": # Si c'est retour
+            levelsplit = level.split("/") # On divise level en une liste qui ressemble à ca, par exemple : ["encyclopedie", "Sciences", "Mathématiques", ""]
+            levelsplit = levelsplit[1:-2] # On enlève la partie encyclopédie l'élément vide et le précédent (on remonte d'un niveeau) ce qui donne dans l'exemple précédent ["Sciences"]
+            level = "encyclopedie/" + "/".join(levelsplit) + "/" # On redéfinit level (dans l'exemple "encyclopedie/Sciences/")
+            level_content = encyclopedie # On revient au niveau 0 du contenu
+            for levels in levelsplit: # On boucle sur chaque élément de levelsplit 
+                level_content = level_content[levels] # Et on précise à chaque itération
+            buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str] # On refait la liste des boutons du menu (si on vérifie le type c'est pour éviter de mettre les infos)
+        elif choice == "Quitter": # Si c'est quitter
+            break # On casse la boucle et bye bye
+        elif "function_to_call" in level_content[buttonInMenu[indice][1]]: # Si il y a une fonction à éxécuter (uniquement au niveau le plus bas possible)
+            result = level_content[buttonInMenu[indice][1]]["function_to_call"]() # On récupère le résultat de la fonction executé
+            drawRect(0, 0, 340, 230, (255, 255, 255)) # Reset d'interface
+            drawTxt(result, 0, 0) # On affiche
+            time.sleep(5) # On attends pour laisser le temps de lire
+            level = "encyclopedie/" # Retour au niveau 0
+            level_content = encyclopedie # Idem mais en terme de contenu
+            buttonInMenu = [["btn", app] for app in encyclopedie] # Et enfin pour les boutons du menu
+        else: # Si aucun des cas précédents, alors c'est qu'on descend d'un niveau ce qui donne
+            if len(level_content[buttonInMenu[indice][1]]) == 0: # Si la page est vide 
+                level = "encyclopedie/" # On retourne au niveau 0
+                level_content = encyclopedie # Idem
+                buttonInMenu = [["btn", app] for app in encyclopedie] # Et voilà
+            else: # Si il y a du contenu (le seul autre cas possible)
+                level = level + buttonInMenu[indice][1] + "/" # On ajoute au niveau le nom de l'élément (exemple : on est dans Sciences on va dans SVT ça donne "encyclopedie/Sciences/SVT/")
+                level_content = level_content[buttonInMenu[indice][1]] # La même mais en terme de contenu 
+                buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str] # Et pour les boutons
 
 
-if __name__ == "__main__":
-    __init__()
-    """try:
-        __init__()
-        print("Fermeture de l'encyclopédie")
-    except Exception as e:
-        print("Erreur : " + str(e))
-        print("Fermeture de l'encyclopédie")"""
+if __name__ == "__main__": # Verification qu'on n'est pas un module mais bien le fichier principal
+    try: # On essaye de lancer le programme
+        __init__() # Voilà
+        print("Fermeture de l'encyclopédie") # Quand on fermera on aura ça
+    except Exception as e: # En cas d'erreur
+        print("Erreur : " + str(e) + "\nMerci de le report sur https://github.com/e-psi-lon/encyclopedie/issues") # On donne l'erreur et on donne un endroit ou le report
+        print("Fermeture de l'encyclopédie") # Et on dit que l'encyclopedie est fermée
