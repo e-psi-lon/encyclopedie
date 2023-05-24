@@ -109,7 +109,7 @@ def main():
         if choice == len(buttonInMenu) - 1 and level == "encyclopedie/":
             break
         elif "function_to_call" in level_content[buttonInMenu[choice][1]].keys():
-            exec(level_content[buttonInMenu[choice][1]]["function_to_call"])
+            exec(str(level_content[buttonInMenu[choice][1]]["function_to_call"]))
             level = "encyclopedie/"
             level_content = encyclopedie
             buttonInMenu = [["btn", app] for app in level_content if type(level_content[app]) != str]
