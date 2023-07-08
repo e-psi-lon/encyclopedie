@@ -152,6 +152,7 @@ def racines():
     drawRect(0, 70, 340, 20, (255, 255, 255))
     drawTxt("c", 0, 30)
     c = cinput(x1=0, y1=70, x2=340, y2=90)
+    drawRect(0, 70, 340, 20, (255, 255, 255))
     delta = b ** 2 - 4 * a * c
     if delta > 0:
         return "Cette équation a pour delta :\n " + delta + "\n et pour racines : \n" + str(
@@ -175,6 +176,7 @@ def discriminant():
     drawRect(0, 70, 340, 20, (255, 255, 255))
     drawTxt("c", 0, 40)
     c = cinput(x1=0, y1=70, x2=340, y2=90)
+    drawRect(0, 70, 340, 20, (255, 255, 255))
     return "Cette équation a pour\n" \
            "discriminant : " + str(b ** 2 - 4 * a * c)
 
@@ -213,7 +215,9 @@ encyclopedie = {
             "La Cellule": {
                 "info": "La Cellule :",
                 "Théorie Cellulaire": {
-                    "function_to_call": lambda: "Permet de connaitre la théorie cellulaire"
+                    "function_to_call": lambda: "- Tout organisme vivant est\ncomposé d'une ou plusieurs\ncellules \n- La cellule est l'unité " \
+                   "de\nstructure et de fonction du\nvivant \n- Toute cellule provient d'une\nautre cellule par " \
+                   "division\ncellulaire"
                 },
                 "Retour": {}
             },
@@ -267,8 +271,7 @@ encyclopedie = {
         "Credits": {
             "info": "Credits :",
             "Developers": {
-                "function_to_call": lambda: drawTxt(
-                    "Colveri : developpeur principal \ne_psi_lon : developpeur secondaire", 0, 0)
+                "function_to_call": lambda: "Colveri : developpeur principal \ne_psi_lon : developpeur\nsecondaire (mais qui fait\nquand même beaucoup)"
             },
         },
         "Retour": {}
@@ -326,8 +329,7 @@ def main():
             break  # On casse la boucle et bye bye
         elif "function_to_call" in level_content[buttonInMenu[indice][1]]:  # Si il y a une fonction à éxécuter (
             # uniquement au niveau le plus bas possible)
-            # Le commentaire suivant est pour éviter que PyCharm m'affiche une erreur alors qu'au lancemment du script
-            # tout fonctionne
+            # Le commentaire après est pour éviter que PyCharm affiche une erreur alors que tout fonctionne
             # noinspection PyCallingNonCallable
             result = level_content[buttonInMenu[indice][1]]["function_to_call"]()  # On l'éxécute et on récupère le
             # résultat
@@ -335,6 +337,7 @@ def main():
             time.sleep(5)  # On attends pour laisser le temps de lire
             level = "encyclopedie/"  # Retour au niveau 0
             level_content = encyclopedie  # Idem mais en terme de contenu
+            drawRect(0, 0, 340, 230, (255, 255, 255))  # Réinitialisation de l'interface
             buttonInMenu = [["btn", app] for app in encyclopedie]  # Et enfin pour les boutons du menu
         else:  # Si aucun des cas précédents, alors c'est qu'on descend d'un niveau ce qui donne
             if len(level_content[buttonInMenu[indice][1]]) == 0:  # Si la page est vide
